@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>厦门市云智未来科学技术研究院</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#0FC6C2',
+                        accent: '#722ED1',
+                        dark: '#1D2129',
+                        light: '#F2F3F5'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .bg-gradient-hero {
+                background: linear-gradient(135deg, #165DFF 0%, #0FC6C2 100%);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter text-dark bg-white">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="text-primary text-2xl font-bold mr-2">
+                        <i class="fa fa-lightbulb-o"></i>
+                    </div>
+                    <a href="#" class="text-xl md:text-2xl font-bold text-dark">
+                        云智未来
+                    </a>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-dark hover:text-primary transition-colors font-medium">关于我们</a>
+                    <a href="#research" class="text-dark hover:text-primary transition-colors font-medium">研究领域</a>
+                    <a href="#team" class="text-dark hover:text-primary transition-colors font-medium">研究团队</a>
+                    <a href="#news" class="text-dark hover:text-primary transition-colors font-medium">新闻动态</a>
+                    <a href="#contact" class="text-dark hover:text-primary transition-colors font-medium">联系我们</a>
+                </nav>
+                
+                <!-- 联系按钮 -->
+                <div class="hidden md:block">
+                    <a href="#contact" class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg transition-all">
+                        合作咨询
+                    </a>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="menu-toggle" class="md:hidden text-dark focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="#about" class="block text-dark hover:text-primary transition-colors font-medium py-2">关于我们</a>
+                <a href="#research" class="block text-dark hover:text-primary transition-colors font-medium py-2">研究领域</a>
+                <a href="#team" class="block text-dark hover:text-primary transition-colors font-medium py-2">研究团队</a>
+                <a href="#news" class="block text-dark hover:text-primary transition-colors font-medium py-2">新闻动态</a>
+                <a href="#contact" class="block text-dark hover:text-primary transition-colors font-medium py-2">联系我们</a>
+                <a href="#contact" class="block bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg text-center transition-all">
+                    合作咨询
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 英雄区域 -->
+        <section class="pt-24 md:pt-0 min-h-screen flex items-center bg-gradient-hero text-white overflow-hidden">
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="absolute left-1/3 bottom-10 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
+            </div>
+            
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative z-10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 max-w-xl">
+                        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow">
+                            厦门市云智未来<br>科学技术研究院
+                        </h1>
+                        <p class="text-lg md:text-xl text-white/90 leading-relaxed">
+                            专注于云计算、人工智能与未来科技研究，致力于推动科技创新与产业升级，为智慧城市与数字经济发展提供核心动力。
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <a href="#research" class="bg-white text-primary hover:bg-white/90 px-6 py-3 rounded-lg font-medium transition-all shadow-lg">
+                                探索研究领域
+                            </a>
+                            <a href="#contact" class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-6 py-3 rounded-lg font-medium transition-all">
+                                寻求合作
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:block relative">
+                        <div class="absolute inset-0 bg-accent/20 rounded-2xl transform rotate-3"></div>
+                        <img src="https://picsum.photos/id/180/600/500" alt="科研人员在实验室进行研究工作" class="relative rounded-2xl shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <div class="absolute -bottom-6 -left-6 bg-white text-primary p-4 rounded-lg shadow-xl">
+                            <p class="font-bold text-lg">20+</p>
+                            <p class="text-sm">重点研究项目</p>
+                        </div>
+                        <div class="absolute -top-6 -right-6 bg-white text-accent p-4 rounded-lg shadow-xl">
+                            <p class="font-bold text-lg">50+</p>
+                            <p class="text-sm">科研专家团队</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+                    <div class="bg-white/10 backdrop-blur-sm p-5 rounded-lg text-center">
+                        <p class="text-3xl font-bold mb-2">15+</p>
+                        <p class="text-white/80">技术专利</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-5 rounded-lg text-center">
+                        <p class="text-3xl font-bold mb-2">30+</p>
+                        <p class="text-white/80">合作企业</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-5 rounded-lg text-center">
+                        <p class="text-3xl font-bold mb-2">25+</p>
+                        <p class="text-white/80">学术论文</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm p-5 rounded-lg text-center">
+                        <p class="text-3xl font-bold mb-2">8+</p>
+                        <p class="text-white/80">科研成果转化</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-white/80 hover:text-white">
+                    <i class="fa fa-chevron-down"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 关于我们 -->
+        <section id="about" class="py-20 bg-light">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">关于我们</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-gray-600 text-lg">厦门市云智未来科学技术研究院是一家专注于前沿科技研究与应用的科研机构，致力于推动云计算、人工智能等领域的技术创新与产业落地。</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/2/600/400" alt="研究院办公环境" class="rounded-xl shadow-lg w-full">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg max-w-xs">
+                            <p class="italic text-gray-600">"我们致力于用科技创造更智能的未来，用创新推动社会进步。"</p>
+                            <p class="mt-3 font-semibold text-primary">—— 院长 张明博士</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-dark">研究院简介</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            厦门市云智未来科学技术研究院成立于2018年，是一家集科研、开发、咨询于一体的综合性科研机构。研究院汇聚了国内外顶尖的科研人才，专注于云计算、大数据、人工智能、物联网等前沿技术的研究与应用。
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            我们与厦门大学、华侨大学等高校建立了紧密的合作关系，同时与多家知名企业保持良好的技术交流与项目合作，旨在促进科技成果转化，推动产业升级。
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div class="flex items-start">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <i class="fa fa-flask text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">前沿技术研究</h4>
+                                    <p class="text-gray-600 text-sm">专注核心技术突破</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <i class="fa fa-handshake-o text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">产学研合作</h4>
+                                    <p class="text-gray-600 text-sm">促进成果转化</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <i class="fa fa-graduation-cap text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">人才培养</h4>
+                                    <p class="text-gray-600 text-sm">输送高端科技人才</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                    <i class="fa fa-lightbulb-o text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">创新孵化</h4>
+                                    <p class="text-gray-600 text-sm">培育科技型企业</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 使命愿景 -->
+                <div class="mt-20 grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-compass"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">我们的使命</h3>
+                        <p class="text-gray-600">
+                            探索前沿科技，推动技术创新，解决行业痛点，为社会发展提供科技支撑，创造更智能、更高效、更美好的未来。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-eye"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">我们的愿景</h3>
+                        <p class="text-gray-600">
+                            成为国内外领先的科技创新机构，在云计算与人工智能领域引领技术发展方向，成为连接学术界与产业界的重要桥梁。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+                        <div class="text-primary text-3xl mb-4">
+                            <i class="fa fa-balance-scale"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">我们的价值观</h3>
+                        <p class="text-gray-600">
+                            创新、严谨、协作、奉献。坚持科学精神，追求技术卓越，注重团队合作，致力于科技服务社会。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究领域 -->
+        <section id="research" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">研究领域</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-gray-600 text-lg">我们专注于前沿科技领域的研究与应用，致力于解决行业关键技术问题，推动产业数字化转型。</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 研究领域卡片 1 -->
+                    <div class="rounded-xl overflow-hidden shadow-md card-hover bg-white border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/1/600/400" alt="云计算与边缘计算研究" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
+                                核心研究
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">云计算与边缘计算</h3>
+                            <p class="text-gray-600 mb-4">
+                                研究分布式计算架构、资源调度优化、边缘节点协同等关键技术，开发高性能、低延迟的云边一体化解决方案。
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究领域卡片 2 -->
+                    <div class="rounded-xl overflow-hidden shadow-md card-hover bg-white border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/2/600/400" alt="人工智能与机器学习研究" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
+                                核心研究
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">人工智能与机器学习</h3>
+                            <p class="text-gray-600 mb-4">
+                                专注于深度学习、强化学习、自然语言处理等技术研究，开发面向行业应用的智能算法与系统。
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究领域卡片 3 -->
+                    <div class="rounded-xl overflow-hidden shadow-md card-hover bg-white border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/3/600/400" alt="大数据分析与挖掘研究" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
+                                核心研究
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">大数据分析与挖掘</h3>
+                            <p class="text-gray-600 mb-4">
+                                研究海量数据处理、知识图谱构建、数据隐私保护等技术，为企业决策提供数据驱动的智能支持。
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究领域卡片 4 -->
+                    <div class="rounded-xl overflow-hidden shadow-md card-hover bg-white border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/4/600/400" alt="物联网与智能感知研究" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium mb-4">
+                                应用研究
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">物联网与智能感知</h3>
+                            <p class="text-gray-600 mb-4">
+                                研究物联网通信协议、智能传感器技术、设备协同控制等，开发面向智慧城市、智能制造的物联网解决方案。
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究领域卡片 5 -->
+                    <div class="rounded-xl overflow-hidden shadow-md card-hover bg-white border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/5/600/400" alt="区块链技术研究" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium mb-4">
+                                应用研究
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">区块链技术研究</h3>
+                            <p class="text-gray-600 mb-4">
+                                研究区块链共识机制、智能合约、跨链技术等，探索在金融、供应链、数字身份等领域的创新应用。
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 研究领域卡片 6 -->
+                    <div class="rounded-xl overflow-hidden shadow-md card-hover bg-white border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/6/600/400" alt="智慧城市技术研究" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-medium mb-4">
+                                应用研究
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">智慧城市技术</h3>
+                            <p class="text-gray-600 mb-4">
+                                研究城市大数据分析、智能交通、智慧能源、公共安全等技术，构建高效、绿色、安全的智慧城市系统。
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 研究成果数据 -->
+                <div class="mt-20 bg-light p-8 rounded-2xl">
+                    <div class="text-center mb-12">
+                        <h3 class="text-2xl font-bold mb-2">研究成果统计</h3>
+                        <p class="text-gray-600">我们在各研究领域取得的成果数据</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <canvas id="researchChart" width="400" height="300"></canvas>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="text-3xl font-bold text-primary mb-1">15+</div>
+                                <div class="text-gray-600">技术专利</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="text-3xl font-bold text-primary mb-1">25+</div>
+                                <div class="text-gray-600">学术论文</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="text-3xl font-bold text-primary mb-1">8</div>
+                                <div class="text-gray-600">成果转化项目</div>
+                            </div>
+                            <div class="bg-white p-6 rounded-xl shadow-sm">
+                                <div class="text-3xl font-bold text-primary mb-1">12</div>
+                                <div class="text-gray-600">行业解决方案</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究团队 -->
+        <section id="team" class="py-20 bg-light">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">研究团队</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-gray-600 text-lg">我们拥有一支由国内外知名专家组成的高水平研究团队，专注于前沿科技的研究与创新。</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- 团队成员 1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://picsum.photos/id/101/400/500" alt="张明博士 - 院长" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold mb-1">张明</h3>
+                            <p class="text-primary mb-3">院长 / 博士</p>
+                            <p class="text-gray-600 text-sm mb-4">
+                                前清华大学计算机系教授，云计算领域专家，拥有20年研究经验，发表学术论文50余篇。
+                            </p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 团队成员 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://picsum.photos/id/102/400/500" alt="李华博士 - 人工智能研究室主任" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold mb-1">李华</h3>
+                            <p class="text-primary mb-3">人工智能研究室主任 / 博士</p>
+                            <p class="text-gray-600 text-sm mb-4">
+                                麻省理工学院博士后，专注于深度学习与计算机视觉研究，曾主导多项国家级AI项目。
+                            </p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 团队成员 3 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://picsum.photos/id/103/400/500" alt="王芳博士 - 大数据研究室主任" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold mb-1">王芳</h3>
+                            <p class="text-primary mb-3">大数据研究室主任 / 博士</p>
+                            <p class="text-gray-600 text-sm mb-4">
+                                复旦大学数据科学学院博士，在数据挖掘与知识图谱领域有深厚造诣，行业经验丰富。
+                            </p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 团队成员 4 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://picsum.photos/id/104/400/500" alt="赵强博士 - 物联网研究室主任" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold mb-1">赵强</h3>
+                            <p class="text-primary mb-3">物联网研究室主任 / 博士</p>
+                            <p class="text-gray-600 text-sm mb-4">
+                                哈尔滨工业大学博士，专注于物联网与嵌入式系统研究，拥有多项相关技术专利。
+                            </p>
+                            <div class="flex justify-center space-x-3">
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-medium transition-all">
+                        查看全部团队成员
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 合作机构 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h3 class="text-2xl font-bold mb-2">合作机构</h3>
+                    <p class="text-gray-600">我们与众多知名高校、企业和研究机构建立了长期合作关系</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
+                    <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                        <img src="https://picsum.photos/id/20/200/80" alt="合作机构logo" class="h-12 object-contain">
+                    </div>
+                    <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                        <img src="https://picsum.photos/id/21/200/80" alt="合作机构logo" class="h-12 object-contain">
+                    </div>
+                    <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                        <img src="https://picsum.photos/id/22/200/80" alt="合作机构logo" class="h-12 object-contain">
+                    </div>
+                    <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                        <img src="https://picsum.photos/id/23/200/80" alt="合作机构logo" class="h-12 object-contain">
+                    </div>
+                    <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                        <img src="https://picsum.photos/id/24/200/80" alt="合作机构logo" class="h-12 object-contain">
+                    </div>
+                    <div class="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
+                        <img src="https://picsum.photos/id/25/200/80" alt="合作机构logo" class="h-12 object-contain">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 新闻动态 -->
+        <section id="news" class="py-20 bg-light">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">新闻动态</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-gray-600 text-lg">了解研究院的最新动态、研究成果与活动信息</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- 新闻 1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/30/600/400" alt="研究院与某科技公司达成战略合作" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-gray-500 text-sm mb-3">
+                                <i class="fa fa-calendar-o mr-2"></i>
+                                <span>2023-06-15</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">研究院与某科技公司达成战略合作</h3>
+                            <p class="text-gray-600 mb-4 line-clamp-3">
+                                近日，厦门市云智未来科学技术研究院与国内某知名科技公司签署战略合作协议，双方将在人工智能与云计算领域开展深度合作...
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻 2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/31/600/400" alt="我院两项研究成果获国家专利授权" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-gray-500 text-sm mb-3">
+                                <i class="fa fa-calendar-o mr-2"></i>
+                                <span>2023-05-28</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">我院两项研究成果获国家专利授权</h3>
+                            <p class="text-gray-600 mb-4 line-clamp-3">
+                                我院人工智能研究室研发的"基于深度学习的图像识别方法"和大数据研究室研发的"一种高效数据加密算法"获得国家发明专利授权...
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 新闻 3 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/32/600/400" alt="2023人工智能与未来科技论坛成功举办" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-gray-500 text-sm mb-3">
+                                <i class="fa fa-calendar-o mr-2"></i>
+                                <span>2023-04-12</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">2023人工智能与未来科技论坛成功举办</h3>
+                            <p class="text-gray-600 mb-4 line-clamp-3">
+                                由我院主办的"2023人工智能与未来科技论坛"在厦门成功举办，来自国内外的知名专家学者齐聚一堂，共同探讨AI技术发展趋势...
+                            </p>
+                            <a href="#" class="text-primary font-medium inline-flex items-center">
+                                阅读全文 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <a href="#" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-all">
+                        查看更多新闻
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我们 -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">联系我们</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                    <p class="text-gray-600 text-lg">如果您有合作意向或其他疑问，欢迎通过以下方式与我们联系</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <div class="bg-light p-8 rounded-xl h-full">
+                            <h3 class="text-2xl font-bold mb-6">联系方式</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                        <i class="fa fa-map-marker text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-1">地址</h4>
+                                        <p class="text-gray-600">福建省厦门市湖里区高新技术园区科苑路129号</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                        <i class="fa fa-phone text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-1">电话</h4>
+                                        <p class="text-gray-600">0592-1234567</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                        <i class="fa fa-envelope text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-1">邮箱</h4>
+                                        <p class="text-gray-600">contact@yunzhi-future.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary/10 p-3 rounded-lg mr-4">
+                                        <i class="fa fa-clock-o text-primary text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-1">工作时间</h4>
+                                        <p class="text-gray-600">周一至周五: 9:00 - 18:00</p>
+                                        <p class="text-gray-600">周六至周日: 休息</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <h4 class="font-semibold mb-4">关注我们</h4>
+                                <div class="flex space-x-4">
+                                    <a href="#" class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors">
+                                        <i class="fa fa-weixin"></i>
+                                    </a>
+                                    <a href="#" class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors">
+                                        <i class="fa fa-weibo"></i>
+                                    </a>
+                                    <a href="#" class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                    <a href="#" class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors">
+                                        <i class="fa fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <form class="bg-light p-8 rounded-xl">
+                            <h3 class="text-2xl font-bold mb-6">发送消息</h3>
+                            
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                                    <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="请输入您的姓名">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                                    <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="请输入您的邮箱">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                                <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="请输入消息主题">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">消息内容</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="请输入您的消息内容"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-all">
+                                发送消息
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 订阅区域 -->
+        <section class="py-16 bg-primary text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">订阅我们的通讯</h3>
+                    <p class="text-white/80 mb-8 max-w-2xl mx-auto">
+                        订阅我们的电子通讯，及时了解研究院的最新研究成果、活动信息和行业动态。
+                    </p>
+                    
+                    <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+                        <input type="email" placeholder="请输入您的邮箱地址" class="flex-grow px-4 py-3 rounded-lg text-dark focus:outline-none focus:ring-2 focus:ring-white">
+                        <button type="submit" class="bg-white text-primary hover:bg-white/90 px-6 py-3 rounded-lg font-medium transition-all whitespace-nowrap">
+                            立即订阅
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="text-primary text-2xl font-bold mr-2">
+                            <i class="fa fa-lightbulb-o"></i>
+                        </div>
+                        <span class="text-xl font-bold">云智未来</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        厦门市云智未来科学技术研究院是一家专注于前沿科技研究与应用的科研机构，致力于推动云计算、人工智能等领域的技术创新与产业落地。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-weixin text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-weibo text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-linkedin text-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-github text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-primary transition-colors">关于我们</a></li>
+                        <li><a href="#research" class="text-gray-400 hover:text-primary transition-colors">研究领域</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-primary transition-colors">研究团队</a></li>
+                        <li><a href="#news" class="text-gray-400 hover:text-primary transition-colors">新闻动态</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-primary transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">研究领域</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">云计算与边缘计算</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">人工智能与机器学习</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">大数据分析与挖掘</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">物联网与智能感知</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">智慧城市技术</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">联系信息</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">福建省厦门市湖里区高新技术园区科苑路129号</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-primary mr-3"></i>
+                            <span class="text-gray-400">0592-1234567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-primary mr-3"></i>
+                            <span class="text-gray-400">contact@yunzhi-future.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        &copy; 2023 厦门市云智未来科学技术研究院. 保留所有权利.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors">隐私政策</a>
+                        <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors">使用条款</a>
+                        <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors">网站地图</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all z-50">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // 移动端菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('py-2', 'shadow');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2', 'shadow');
+            }
+        });
+        
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 研究成果图表
+        const ctx = document.getElementById('researchChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['云计算', '人工智能', '大数据', '物联网', '其他领域'],
+                datasets: [{
+                    data: [30, 25, 20, 15, 10],
+                    backgroundColor: [
+                        '#165DFF',
+                        '#0FC6C2',
+                        '#722ED1',
+                        '#FF7D00',
+                        '#F53F3F'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '各领域研究成果占比',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        padding: {
+                            bottom: 20
+                        }
+                    }
+                },
+                cutout: '65%'
+            }
+        });
+        
+        // 添加页面加载动画
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
